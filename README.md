@@ -6,9 +6,9 @@ A drag-and-drop tool for reviewing hero-asset variations, built from the `Home.p
 
 ## What it does
 
-The page opens with two hero frames side by side — one **desktop** (1920×985) and one
-**mobile** (430×676) — each rendered at its real breakpoint size and then scaled down, so
-proportions match the comp exactly rather than being approximated.
+The page opens with two **sets** — a **desktop** frame (1920×985) beside a **mobile** frame
+(430×676), twice over — each rendered at its real breakpoint size and then scaled down, so
+proportions match the comp exactly rather than being approximated. **Set** adds another pair.
 
 Drop a video **on a frame** to load just that one. Drop several **anywhere** and they fill
 every frame in order, spawning extra desktop frames if you have more clips than frames.

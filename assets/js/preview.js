@@ -178,6 +178,9 @@
     return v;
   }
 
+  /** A set is one horizontal frame beside one vertical frame. */
+  function addSet() { addView('desktop'); addView('mobile'); }
+
   function removeView(v) {
     var i = views.indexOf(v);
     if (i > -1) views.splice(i, 1);
@@ -396,11 +399,12 @@
   document.querySelectorAll('[data-add]').forEach(function (b) {
     b.addEventListener('click', function () { addView(b.getAttribute('data-add')); });
   });
+  document.querySelector('[data-add-set]').addEventListener('click', addSet);
   playBtn.addEventListener('click', toggle);
   document.querySelector('[data-restart]').addEventListener('click', function () { seek(0); play(); });
   document.querySelector('[data-clear]').addEventListener('click', function () {
     views.slice().forEach(removeView);
-    addView('desktop'); addView('mobile');
+    addSet(); addSet();
     setMaster(0); paint();
   });
   loopBtn.addEventListener('click', function () {
@@ -444,9 +448,8 @@
     document.querySelectorAll('[data-clock]').forEach(function (el) { el.textContent = s; });
   }, 1000);
 
-  /* ── boot: one horizontal frame, one vertical ── */
-  addView('desktop');
-  addView('mobile');
+  /* ── boot: two sets, each a horizontal frame beside a vertical one ── */
+  addSet(); addSet();
   transport.hidden = true;
   paint();
 })();
