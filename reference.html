@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benchmark Golf — Train smart. Improve fast.</title>
+<meta name="description" content="Benchmark Golf reference build. Homepage recreated from the Figma comp, with a drag-and-drop synchronized video visualizer in the hero.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preload" href="assets/fonts/HankenGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛳</text></svg>">
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header class="hdr" id="top">
+  <div class="hdr__inner">
+    <button class="hdr__burger" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+
+    <a class="hdr__logo" href="#top" aria-label="Benchmark Golf — home">
+      <img src="assets/img/logo-header.png" alt="Benchmark Golf, formerly Golf Daddy" width="230" height="60">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link nav__link--menu" href="#shop">Shop
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15.5 18 9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="nav__link" href="#how">How it works</a>
+      <a class="nav__link" href="#mission">Our Mission</a>
+      <a class="nav__link" href="#contact">Contact</a>
+    </nav>
+
+    <div class="hdr__actions">
+      <a class="hdr__action" href="#login">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.8 20c.6-3.7 3.6-5.8 7.2-5.8s6.6 2.1 7.2 5.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>Login</span>
+      </a>
+      <a class="hdr__action" href="#cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.4 7.5h13.2l-1 12.2a1.4 1.4 0 0 1-1.4 1.3H7.8a1.4 1.4 0 0 1-1.4-1.3L5.4 7.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9V6.4a3 3 0 0 1 6 0V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>Cart</span>
+        <b class="hdr__badge">2</b>
+      </a>
+    </div>
+  </div>
+
+  <!-- promo bar -->
+  <div class="promo">
+    <div class="promo__inner">
+      <img class="promo__sun" src="assets/img/sun.jpg" alt="" width="18" height="18">
+      <span class="promo__name">SALE NAME</span>
+      <i class="promo__rule"></i>
+      <span class="promo__off">60% OFF</span>
+      <i class="promo__rule"></i>
+      <span class="promo__ends">ENDS IN <b data-countdown="10:56:59">10:56:59</b></span>
+      <img class="promo__sun" src="assets/img/sun.jpg" alt="" width="18" height="18">
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════ HERO / VISUALIZER ══════════════════════ -->
+<section class="hero" id="hero" data-state="empty">
+
+  <!-- still frame from the comp, shown until clips are loaded -->
+  <img class="hero__still" src="assets/img/hero-still.jpg" alt="" aria-hidden="true">
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <!-- ---------- empty state: the comp's hero ---------- -->
+  <div class="hero__copy">
+    <div class="hero__lead">
+      <h1 class="hero__title">Train smart.<br>Improve fast.</h1>
+      <a class="btn btn--light" href="#shop">Explore Golf at Home</a>
+    </div>
+
+    <ul class="awards" aria-label="Awards">
+      <li><b>#1</b><span>Bestseller</span></li>
+      <li><b>Golf SIM 2026</b><span>TOP Consumer</span></li>
+      <li><b>AI Startup</b><span>Winning</span></li>
+    </ul>
+  </div>
+
+  <ul class="chips" aria-label="Ratings and stats">
+    <li class="chip">
+      <svg class="chip__i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85s-1.8-.83-3-.81c-1.5.02-2.9.88-3.7 2.24-1.6 2.75-.4 6.83 1.1 9.07.75 1.1 1.63 2.33 2.8 2.29 1.13-.05 1.55-.73 2.92-.73s1.75.73 2.94.71c1.22-.02 2-1.12 2.74-2.22.86-1.27 1.22-2.5 1.24-2.56-.03-.01-2.38-.91-2.4-3.6ZM14.1 5.9c.62-.75 1.04-1.8.92-2.85-.9.04-1.98.6-2.62 1.34-.57.66-1.07 1.72-.94 2.74 1 .08 2.02-.5 2.64-1.23Z"/></svg>
+      <b>4.8</b><span class="stars" data-stars="5" aria-label="5 out of 5"></span>
+    </li>
+    <li class="chip">
+      <svg class="chip__i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 9.4v7.4c0 .6.5 1.1 1.1 1.1h.8v2.6a1.3 1.3 0 0 0 2.6 0V17.9h2.9v2.6a1.3 1.3 0 0 0 2.6 0V17.9h.8c.6 0 1.1-.5 1.1-1.1V9.4H6Zm-1.6-.1a1.3 1.3 0 0 0-1.3 1.3v4.9a1.3 1.3 0 0 0 2.6 0v-4.9a1.3 1.3 0 0 0-1.3-1.3Zm15.2 0a1.3 1.3 0 0 0-1.3 1.3v4.9a1.3 1.3 0 0 0 2.6 0v-4.9a1.3 1.3 0 0 0-1.3-1.3ZM15.5 4.6l1-1.8a.3.3 0 0 0-.5-.3l-1 1.85a6.5 6.5 0 0 0-5.9 0L8.05 2.5a.3.3 0 0 0-.52.3l1 1.8A5.4 5.4 0 0 0 6 8.6h12a5.4 5.4 0 0 0-2.5-4ZM9.5 6.9a.6.6 0 1 1 0-1.2.6.6 0 0 1 0 1.2Zm5 0a.6.6 0 1 1 0-1.2.6.6 0 0 1 0 1.2Z"/></svg>
+      <b>4.6</b><span class="stars" data-stars="5" aria-label="5 out of 5"></span>
+    </li>
+    <li class="chip">
+      <svg class="chip__i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3.6c2.6 2.5 2.6 14.3 0 16.8M12 3.6c-2.6 2.5-2.6 14.3 0 16.8M3.7 12h16.6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+      <b>600+</b> Unique Courses
+    </li>
+    <li class="chip">
+      <svg class="chip__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.4h6.2a2.6 2.6 0 0 1 2.6 2.6v10a2 2 0 0 0-2-2H4V6.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 6.4h-6.2a2.6 2.6 0 0 0-2.6 2.6v10a2 2 0 0 1 2-2H20V6.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <b>70,000+</b> Lessons Taught
+    </li>
+  </ul>
+
+  <!-- ---------- drop affordance ---------- -->
+  <div class="dropcard" data-dropcard>
+    <svg class="dropcard__i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5V4.2m0 0L7.8 8.4M12 4.2l4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.6 15v2.8a2.6 2.6 0 0 0 2.6 2.6h11.6a2.6 2.6 0 0 0 2.6-2.6V15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    <div class="dropcard__txt">
+      <b>Drop videos here to compare them in sync</b>
+      <span>Any number of clips — they share one clock, so late arrivals snap to the same frame.</span>
+    </div>
+    <button class="btn btn--light btn--sm" type="button" data-browse>Choose files</button>
+  </div>
+
+  <!-- ---------- active state: the sync stage ---------- -->
+  <div class="stage" data-stage hidden>
+    <div class="stage__grid" data-grid></div>
+
+    <div class="stage__bar">
+      <div class="stage__row stage__row--main">
+        <button class="ctl ctl--play" type="button" data-play aria-label="Play or pause (Space)">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.2 19 12 8 18.8V5.2Z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.5 5h3.2v14H7.5zM13.3 5h3.2v14h-3.2z"/></svg>
+        </button>
+
+        <button class="ctl" type="button" data-restart aria-label="Restart (R)" title="Restart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.8 12a7.2 7.2 0 1 0 2.2-5.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M4.4 4.6v4.2h4.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <span class="stage__time"><b data-cur>0:00.00</b> / <span data-dur>0:00.00</span></span>
+
+        <input class="scrub" type="range" min="0" max="1000" value="0" step="1" data-scrub aria-label="Timeline">
+
+        <div class="seg" role="group" aria-label="Playback speed">
+          <button type="button" data-rate="0.25">¼×</button>
+          <button type="button" data-rate="0.5">½×</button>
+          <button type="button" data-rate="1" class="is-on">1×</button>
+          <button type="button" data-rate="2">2×</button>
+        </div>
+
+        <button class="ctl ctl--txt is-on" type="button" data-loop aria-pressed="true" title="Loop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.8h9.2a3.6 3.6 0 0 1 3.6 3.6v.6M17 18.2H7.8a3.6 3.6 0 0 1-3.6-3.6v-.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M14.6 3.4 17 5.8l-2.4 2.4M9.4 20.6 7 18.2l2.4-2.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Loop</span>
+        </button>
+
+        <div class="stage__spacer"></div>
+
+        <button class="ctl ctl--txt" type="button" data-browse>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Add</span>
+        </button>
+        <button class="ctl ctl--txt" type="button" data-fullscreen title="Fullscreen (F)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 9.2V4.6h4.6M19.4 9.2V4.6h-4.6M4.6 14.8v4.6h4.6M19.4 14.8v4.6h-4.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="ctl ctl--txt" type="button" data-clear title="Remove all clips">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.6 6.8h12.8M9.8 6.8V5.2a1.2 1.2 0 0 1 1.2-1.2h2a1.2 1.2 0 0 1 1.2 1.2v1.6M7.4 6.8l.7 12a1.3 1.3 0 0 0 1.3 1.2h5.2a1.3 1.3 0 0 0 1.3-1.2l.7-12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Clear</span>
+        </button>
+      </div>
+      <p class="stage__hint">Space play/pause · ←/→ nudge 1s · ⇧←/→ step a frame · R restart · F fullscreen · M mute. Files never leave your browser.</p>
+    </div>
+  </div>
+
+  <!-- drag overlay -->
+  <div class="dropveil" data-veil aria-hidden="true"><span>Release to add clips</span></div>
+  <input type="file" accept="video/*" multiple hidden data-file>
+</section>
+
+<!-- ══════════════════════ GOLF AT HOME ══════════════════════ -->
+<section class="pitch" id="shop">
+  <img class="pitch__img" src="assets/img/product-golf-at-home.png" alt="Golf at Home no-ball golf simulator — box, smart mat, replacement pad and magnetic tripod" width="700" height="480">
+  <h2 class="h2">Golf at Home</h2>
+  <p class="pitch__sub">No Ball Golf Simulator</p>
+  <a class="btn btn--dark" href="#cart">Buy Now</a>
+</section>
+
+<!-- ══════════════════════ COMPLETE YOUR SETUP ══════════════════════ -->
+<section class="setup">
+  <div class="wrap">
+    <h2 class="h2 h2--c">Complete your setup</h2>
+    <p class="sub sub--c">Add the pieces that take your game further.</p>
+
+    <div class="setup__grid">
+      <article class="card">
+        <img src="assets/img/product-pads.png" alt="Replacement Pad Bundle" width="570" height="420">
+        <h3>Replacement Pads</h3>
+        <p>Keep your mat performing like new</p>
+        <a class="btn btn--dark btn--sm" href="#cart">Buy Now</a>
+      </article>
+      <article class="card">
+        <img src="assets/img/product-tripod.png" alt="Benchmark magnetic tripod" width="380" height="360">
+        <h3>Magnetic Tripod</h3>
+        <p>Holds your phone at the perfect angle. Works with any phone</p>
+        <a class="btn btn--dark btn--sm" href="#cart">Buy Now</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ SOCIAL PROOF (DARK) ══════════════════════ -->
+<section class="dark" id="how">
+  <div class="wrap">
+    <h2 class="h2 h2--c h2--inv">Become the best player in golf<br>without leaving home</h2>
+    <p class="sub sub--c sub--inv">Real golfers, real living rooms, real progress — see what's possible</p>
+  </div>
+
+  <ul class="ugc">
+    <li class="ugc__card"><img src="assets/img/ugc-1.jpg" alt="Golf Daddy's Mission" loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-2.jpg" alt="Therapy." loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-3.jpg" alt="Affordable Golf Sim" loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-4.jpg" alt="iPad Dad" loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-1.jpg" alt="Golf Daddy's Mission" loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-5.jpg" alt="Loving him means being part of his hobbies, passion and dreams" loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+    <li class="ugc__card"><img src="assets/img/ugc-2.jpg" alt="Therapy." loading="lazy"><span class="ugc__play"></span><em>@Golf At Home</em></li>
+  </ul>
+
+  <ul class="stats">
+    <li><b>500M+</b><span>Shots recorded</span></li>
+    <li><b>500K+</b><span>Happy golfers</span></li>
+    <li><b>100+</b><span>Unique courses</span></li>
+    <li><b>70,000+</b><span>Lessons taught</span></li>
+    <li><b>91%</b><span>Improve in 14 days</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════════════ NEVER HELD A CLUB ══════════════════════ -->
+<section class="dark dark--tight" id="mission">
+  <div class="wrap">
+    <h2 class="mega">Never held a club,<br><span class="mega__blue">or chasing your handicap</span></h2>
+    <p class="sub sub--c sub--inv sub--narrow">Beginners build the right fundamentals. Golfers who feel stuck see what's holding them back. And experienced players dial in the details — all from the same living room.</p>
+    <div class="center"><a class="btn btn--light" href="#how">See how it works</a></div>
+  </div>
+</section>
+
+<!-- ══════════════════════ APP ══════════════════════ -->
+<section class="app">
+  <img class="app__img" src="assets/img/phones.png" alt="Benchmark Golf app on two iPhones" width="490" height="560">
+  <h2 class="h2 h2--c">Your game in your pocket</h2>
+  <p class="sub sub--c">Free to download. Play courses, record your swing, and run drills — with or without the mat.</p>
+  <div class="app__badges">
+    <a class="app__badge" href="#ios">
+      <img src="assets/img/badge-appstore.png" alt="Download on the App Store" width="165" height="65">
+      <span class="app__rating"><span class="stars" data-stars="4.5"></span><b>4.8</b></span>
+    </a>
+    <a class="app__badge" href="#android">
+      <img src="assets/img/badge-googleplay.png" alt="Get it on Google Play" width="170" height="65">
+      <span class="app__rating"><span class="stars" data-stars="4.5"></span><b>4.6</b></span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════ MADE FOR REAL LIFE ══════════════════════ -->
+<section class="life">
+  <div class="wrap">
+    <h2 class="h2 h2--c">Made for real life</h2>
+    <p class="sub sub--c">Living rooms, garages, backyards, the range. See how golfers fit<br>Benchmark Golf into their everyday.</p>
+  </div>
+  <div class="marquee" data-marquee>
+    <div class="marquee__track">
+      <img src="assets/img/life-1.jpg" alt="" loading="lazy"><img src="assets/img/life-2.jpg" alt="" loading="lazy"><img src="assets/img/life-3.jpg" alt="" loading="lazy"><img src="assets/img/life-4.jpg" alt="" loading="lazy"><img src="assets/img/life-5.jpg" alt="" loading="lazy"><img src="assets/img/life-6.jpg" alt="" loading="lazy"><img src="assets/img/life-7.jpg" alt="" loading="lazy"><img src="assets/img/life-8.jpg" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FAQ ══════════════════════ -->
+<section class="faq">
+  <h2 class="h2 h2--c">The short answers</h2>
+  <div class="faq__list">
+    <details open>
+      <summary>Does it work without a ball?<i></i></summary>
+      <div class="faq__a"><p>Yes. The mat reads club contact directly — no ball required. You can use real balls outdoors if you prefer.</p></div>
+    </details>
+    <details>
+      <summary>What's in the box?<i></i></summary>
+      <div class="faq__a"><p>The Golf at Home smart mat, a replacement pad, the magnetic phone tripod, and a quick-start guide. The app is a free download on iOS and Android.</p></div>
+    </details>
+    <details>
+      <summary>iPhone or Android?<i></i></summary>
+      <div class="faq__a"><p>Both. The app runs on iPhone and Android, and the magnetic tripod holds any phone at the right angle.</p></div>
+    </details>
+    <details>
+      <summary>What if I don't love it?<i></i></summary>
+      <div class="faq__a"><p>Send it back. If it isn't making your practice better, return it and we'll refund you.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- ══════════════════════ CTA ══════════════════════ -->
+<section class="cta">
+  <div class="cta__inner">
+    <div class="cta__txt">
+      <h2 class="h2">Ready to improve your<br>golf at home?</h2>
+      <p class="sub">The smart mat, the app, and everything you need to play and practice — anywhere.</p>
+      <a class="btn btn--dark" href="#cart">Buy Now</a>
+    </div>
+  </div>
+  <img class="cta__img" src="assets/img/cta-product.png" alt="Golf at Home box and smart mat" width="770" height="700">
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="ftr" id="contact">
+  <div class="wrap ftr__grid">
+    <div class="ftr__brand">
+      <img class="ftr__logo" src="assets/img/logo-footer.png" alt="Benchmark Golf, formerly Golf Daddy" width="330" height="90">
+      <p class="ftr__tag">Helping everyday golfers find their edge.</p>
+      <p class="ftr__desc">Improve your golf game with detailed analytics, unique courses, and personalized coaching.</p>
+      <div class="ftr__badges">
+        <a href="#ios"><img src="assets/img/badge-appstore.png" alt="Download on the App Store" width="152" height="48"></a>
+        <a href="#android"><img src="assets/img/badge-googleplay.png" alt="Get it on Google Play" width="156" height="48"></a>
+      </div>
+    </div>
+
+    <nav class="ftr__col" aria-label="Shop">
+      <h3>Shop</h3>
+      <a href="#shop">Golf at Home</a>
+      <a href="#shop">Replacement Pad Bundle</a>
+      <a href="#shop">Benchmark Tripod</a>
+    </nav>
+
+    <nav class="ftr__col" aria-label="Information">
+      <h3>Information</h3>
+      <a href="#how">How it works</a>
+      <a href="#mission">Our Mission</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <nav class="ftr__col" aria-label="Policy">
+      <h3>Policy</h3>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Refund Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Terms of Sale</a>
+      <a href="#">Copyright Policy</a>
+      <a href="#">Manage Cookies</a>
+    </nav>
+
+    <div class="ftr__col">
+      <h3>Contact</h3>
+      <address>24A Trolley Square, #1180,<br>Wilmington, DE</address>
+      <div class="ftr__social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.8" y="3.8" width="16.4" height="16.4" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.9" cy="7.1" r="1.2" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.2 3h2.5c.2 1.7 1.2 3 2.9 3.3v2.5c-1.1 0-2.1-.3-3-.9v5.5a5.1 5.1 0 1 1-5.1-5.1c.3 0 .5 0 .8.1v2.6a2.5 2.5 0 1 0 1.9 2.4V3Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ftr__bottom">
+    <small>© 2026, Benchmark Golf</small>
+    <img class="ftr__pay" src="assets/img/payments.png" alt="Amex, Apple Pay, Diners Club, Discover, Google Pay, Maestro, Mastercard, Shop Pay, Visa" width="380" height="24">
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/visualizer.js" defer></script>
+</body>
+</html>
