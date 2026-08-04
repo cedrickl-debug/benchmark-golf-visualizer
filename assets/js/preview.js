@@ -169,7 +169,8 @@
       v.name.classList.remove('is-empty');
     });
 
-    board.appendChild(el);
+    // each orientation owns a column, so a new frame lands under its own kind
+    board.querySelector('[data-col="' + kind + '"]').appendChild(el);
     views.push(v);
     rescale(v);
     if (ro) ro.observe(v.stage);

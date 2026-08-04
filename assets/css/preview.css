@@ -79,10 +79,15 @@ body[data-playing] .ctl--play .i-pause{display:block}
 .scrub::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:#fff}
 
 /* ─────────────── board of frames ─────────────── */
+/* one column per orientation — new frames stack under their own kind */
 .board{
   flex:1;display:flex;align-items:flex-start;gap:22px;
   padding:24px 22px;overflow:auto;
 }
+.col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.col:empty{display:none}
+.col--desktop{flex:1;max-width:940px}
+.col--mobile{flex:none;width:min(320px,22vw)}
 .hint{
   margin:0;padding:10px 20px 16px;font-size:12px;color:#71777a;line-height:1.6;
   border-top:1px solid var(--app-line);background:var(--app-panel);
@@ -95,8 +100,7 @@ body[data-playing] .ctl--play .i-pause{display:block}
   transition:border-color .18s ease,box-shadow .18s ease;
 }
 .viewer.is-target{border-color:#0097c9;box-shadow:0 0 0 3px rgba(0,151,201,.22)}
-.viewer--desktop{width:min(940px,58vw)}
-.viewer--mobile{width:min(320px,22vw)}
+.viewer{width:100%}
 
 .viewer__bar{
   display:flex;align-items:center;gap:9px;padding:8px 11px;
@@ -252,8 +256,8 @@ body[data-drag] .veil{display:flex}
 body[data-drag] .veil.is-hushed{display:none}
 
 @media (max-width:1100px){
-  .board{flex-direction:column;align-items:center}
-  .viewer--desktop{width:min(940px,94vw)}
-  .viewer--mobile{width:min(320px,60vw)}
+  .board{flex-direction:column;align-items:stretch}
+  .col--desktop{max-width:none;width:100%}
+  .col--mobile{width:min(320px,60vw)}
   .top__mid{order:3;min-width:100%}
 }
