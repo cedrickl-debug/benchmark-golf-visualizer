@@ -141,9 +141,20 @@ body[data-playing] .ctl--play .i-pause{display:block}
 
 .viewer__drop{
   position:absolute;inset:0;z-index:9;display:none;place-items:center;
-  background:rgba(8,9,9,.78);color:#fff;font-size:15px;font-weight:600;
+  background:rgba(8,9,9,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
 }
+.viewer__drop span{
+  display:grid;justify-items:center;gap:3px;
+  border:2px dashed rgba(255,255,255,.62);border-radius:14px;padding:14px 26px;
+  color:#fff;font-size:15px;font-weight:600;letter-spacing:-.01em;text-align:center;
+}
+.viewer__drop em{font-style:normal;font-size:11px;font-weight:500;color:#9aa1a4;letter-spacing:.02em}
 .viewer.is-target .viewer__drop{display:grid}
+
+/* aiming at a frame: that one lights up, the rest step back */
+body[data-drag][data-aim] .viewer{opacity:.34;transition:opacity .12s ease}
+body[data-drag][data-aim] .viewer.is-target{opacity:1}
+.viewer.is-target{border-color:#0097c9;box-shadow:0 0 0 4px rgba(0,151,201,.3)}
 
 /* ══════════ desktop hero mock — native 1920 × 985 ══════════ */
 .m-d{width:1920px;height:985px;background:#1b1b1c;color:#121313}

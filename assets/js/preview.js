@@ -20,6 +20,17 @@
 
   var STARS = '★★★★★';
 
+  /* Clips shipped with the page, so the board is live the moment it opens.
+     Shapes are measured at build time — 1920×1080 and 1080×1920 — so these
+     go straight to their frame without a round trip for metadata. */
+  var DEFAULTS = [
+    { kind: 'desktop', src: 'assets/video/eddie-horizontal.mp4',          name: 'Eddie_Simulation_Horizontal.mp4' },
+    { kind: 'desktop', src: 'assets/video/pb-eddie-horizontal-rev2.mp4',  name: 'PB Eddie_Simulation_Horizontal_Rev2.mp4' },
+    { kind: 'desktop', src: 'assets/video/pb-horizontal.mp4',             name: 'PB_Simulation_Horizontal.mp4' },
+    { kind: 'mobile',  src: 'assets/video/amanda-bobby-vertical-rev.mp4', name: 'AmandaBobby_Simulation_Vertical_Rev.mp4' },
+    { kind: 'mobile',  src: 'assets/video/pb-vertical-rev3.mp4',          name: 'PB_Simulation_Vertical_Rev3.mp4' }
+  ];
+
   /* tile marks, drawn to the proportions they have in the comp */
   var ICON = {
     apple:
@@ -151,7 +162,9 @@
           '<svg viewBox="0 0 24 24"><path d="M6.4 6.4l11.2 11.2M17.6 6.4L6.4 17.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
         '</button>' +
       '</div>' +
-      '<div class="viewer__stage">' + spec.html + '<div class="viewer__drop">drop here</div></div>';
+      '<div class="viewer__stage">' + spec.html +
+        '<div class="viewer__drop"><span>Drop here<em>' + spec.label + ' frame</em></span></div>' +
+      '</div>';
 
     v.el = el;
     v.stage = el.querySelector('.viewer__stage');
@@ -197,7 +210,8 @@
   function removeView(v) {
     var i = views.indexOf(v);
     if (i > -1) views.splice(i, 1);
-    if (v.url) { v.video.pause(); v.video.removeAttribute('src'); v.video.load(); URL.revokeObjectURL(v.url); }
+    if (v.file) { v.video.pause(); v.video.removeAttribute('src'); v.video.load(); }
+    if (v.url) URL.revokeObjectURL(v.url);
     if (ro) ro.unobserve(v.stage);
     v.el.remove();
     if (soloId === v.id) soloId = null;
@@ -227,39 +241,74 @@
     });
   }
 
-  function loadInto(v, file) {
-    if (v.url) { URL.revokeObjectURL(v.url); v.ready = false; }
-    v.file = file;
-    v.url = URL.createObjectURL(file);
+  /** Point a frame at a clip. `src` is an object URL for a dropped file,
+      a plain path for one of the clips baked into the page. */
+  function loadInto(v, src, name, owned) {
+    if (v.url) URL.revokeObjectURL(v.url);
+    v.ready = false;
+    v.url = owned ? src : null;          // only object URLs are ours to revoke
+    v.file = { name: name };
     v.offset = 0;
-    v.video.src = v.url;
-    v.name.textContent = file.name;
+    v.video.src = src;
+    v.name.textContent = name;
     v.name.classList.remove('is-empty');
     v.still.style.opacity = '0';
     transport.hidden = false;
     applyAudio();
   }
+  function loadFile(v, file) { loadInto(v, URL.createObjectURL(file), file.name, true); }
 
-  /** Spread dropped files across frames; make new desktop frames if we run out. */
+  /** Read a clip's intrinsic size, so it can go to a frame of its own shape. */
+  function probe(file, cb) {
+    var el = document.createElement('video');
+    var url = URL.createObjectURL(file);
+    var settled = false;
+    function finish(w, h) {
+      if (settled) return;
+      settled = true;
+      URL.revokeObjectURL(url);
+      cb(w, h);
+    }
+    el.preload = 'metadata';
+    el.muted = true;
+    el.addEventListener('loadedmetadata', function () { finish(el.videoWidth, el.videoHeight); });
+    el.addEventListener('error', function () { finish(0, 0); });
+    setTimeout(function () { finish(0, 0); }, 4000);   // never hang on a file we can't read
+    el.src = url;
+  }
+  /** Taller than it is wide is a phone; everything else, square included, is a desktop. */
+  function kindOf(w, h) { return h > w ? 'mobile' : 'desktop'; }
+
+  function freeFrame(kind) {
+    return views.find(function (v) { return !v.file && v.kind === kind; }) || addView(kind);
+  }
+
+  /** Measure every clip first, then lay them out — each into a frame of its shape. */
   function distribute(files, target) {
     if (!files.length) return;
-    var first = loaded().length === 0;
-
-    if (target) {
-      loadInto(target, files[0]);
-      files = files.slice(1);
-    }
-    files.forEach(function (f) {
-      var free = views.find(function (v) { return !v.file; });
-      loadInto(free || addView('desktop'), f);
+    var kinds = new Array(files.length), left = files.length;
+    files.forEach(function (f, i) {
+      probe(f, function (w, h) {
+        kinds[i] = kindOf(w, h);
+        if (--left === 0) place(files, kinds, target);
+      });
     });
+  }
 
+  function place(files, kinds, target) {
+    var first = loaded().length === 0;
+    files.forEach(function (f, i) {
+      // dropping straight onto a frame beats the shape rule — that choice was deliberate
+      loadFile(i === 0 && target ? target : freeFrame(kinds[i]), f);
+    });
     if (first) { setMaster(0); play(); }
   }
 
   /* ── transport ── */
   function play() {
-    if (!loaded().length) return;
+    // frames that have a clip but haven't decoded yet count — the boot set
+    // starts playing the moment each one's metadata lands
+    if (!views.some(function (v) { return v.file; })) return;
     var d = duration();
     if (d > 0 && masterTime() >= d - 0.02) setMaster(0);
     setMaster(masterTime());
@@ -367,10 +416,18 @@
     for (var i = 0; i < dt.types.length; i++) if (dt.types[i] === 'Files') return true;
     return false;
   }
+  /** The frame under the cursor, if any. e.target can be a text node, so climb to an element. */
+  function viewerAt(e) {
+    var n = e.target;
+    if (n && n.nodeType !== 1) n = n.parentElement;
+    return n && n.closest ? n.closest('.viewer') : null;
+  }
   function markTarget(el) {
     if (hovered && hovered !== el) hovered.classList.remove('is-target');
     hovered = el;
     if (el) el.classList.add('is-target');
+    // aiming at a frame dims the rest and stands the full-page veil down
+    document.body.toggleAttribute('data-aim', !!el);
     document.querySelector('[data-veil]').classList.toggle('is-hushed', !!el);
   }
 
@@ -383,7 +440,7 @@
     if (!hasFiles(e)) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = 'copy';
-    markTarget(e.target.closest ? e.target.closest('.viewer') : null);
+    markTarget(viewerAt(e));
   });
   addEventListener('dragleave', function (e) {
     if (!hasFiles(e)) return;
@@ -395,7 +452,7 @@
     e.preventDefault();
     depth = 0;
     document.body.removeAttribute('data-drag');
-    var onto = e.target.closest ? e.target.closest('.viewer') : null;
+    var onto = viewerAt(e);
     markTarget(null);
     var v = onto ? views.find(function (x) { return x.el === onto; }) : null;
     distribute(onlyVideos(e.dataTransfer.files), v);
@@ -417,7 +474,7 @@
   document.querySelector('[data-restart]').addEventListener('click', function () { seek(0); play(); });
   document.querySelector('[data-clear]').addEventListener('click', function () {
     views.slice().forEach(removeView);
-    addSet(); addSet();
+    boot();
     setMaster(0); paint();
   });
   loopBtn.addEventListener('click', function () {
@@ -461,8 +518,16 @@
     document.querySelectorAll('[data-clock]').forEach(function (el) { el.textContent = s; });
   }, 1000);
 
-  /* ── boot: two sets, each a horizontal frame beside a vertical one ── */
-  addSet(); addSet();
-  transport.hidden = true;
+  /* ── boot: the shipped clips, already running; two empty sets if there are none ── */
+  function boot() {
+    if (!DEFAULTS.length) {
+      addSet(); addSet();
+      transport.hidden = true;
+      return;
+    }
+    DEFAULTS.forEach(function (d) { loadInto(addView(d.kind), d.src, d.name, false); });
+    play();                       // muted, so the browser lets it start on its own
+  }
+  boot();
   paint();
 })();

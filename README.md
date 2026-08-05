@@ -14,8 +14,15 @@ The mobile frame is measured straight off `Product Page _ Golf At Home - Mobile.
 wide, i.e. 375pt @3×) and divided by three, so the copy stack — centred headline, the three
 rule-separated awards, the full-width pill, the 2 × 2 tile grid — lands where the comp puts it.
 
-Drop a video **on a frame** to load just that one. Drop several **anywhere** and they fill
-every frame in order, spawning extra desktop frames if you have more clips than frames.
+Five clips ship with the page (`assets/video/`), so it is live the moment it opens — three
+horizontals in the desktop track, two verticals in the vertical row, all already running
+together. **Clear** puts that starting set back.
+
+Drop a video **on a frame** to load just that one — hover and the frame lights up while the
+rest step back, and that choice wins over everything below. Drop **anywhere else** and each
+clip is measured first, then sent to a frame of its own shape: wider than tall goes to a
+desktop frame, taller than wide to a mobile one, and a new frame of the right kind is made
+if none is free. Square clips count as desktop.
 Add frames with the **Desktop** / **Mobile** buttons — each orientation owns its own track.
 A new horizontal frame stacks **under** the horizontals; a new vertical lands to the **right**
 of the verticals, so you can line several phone variations up beside each other.
