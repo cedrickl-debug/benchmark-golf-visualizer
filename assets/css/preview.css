@@ -198,50 +198,83 @@ body[data-playing] .ctl--play .i-pause{display:block}
 .m-d__chips b{font-weight:600}
 .m-d__chips i{color:var(--gold);font-style:normal;letter-spacing:1.5px}
 
-/* ══════════ mobile hero mock — native 430 × 676 ══════════ */
-.m-m{width:430px;height:676px;background:#1b1b1c;color:#121313}
+/* ══════════ mobile hero mock — native 375 × 891 ══════════
+   Every number below is measured off the mobile comp (1125px wide,
+   i.e. 375pt @3×) and divided by three. */
+.m-m{width:375px;height:891px;background:#1b1b1c;color:#121313}
 .m-m__hdr{
-  height:64px;background:#fff;display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;padding:0 20px;
+  height:55px;background:#fff;display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;padding:0 17px;
 }
-.m-m__burger{display:flex;flex-direction:column;gap:5px;justify-self:start}
-.m-m__burger span{display:block;width:24px;height:2px;background:#121313;border-radius:2px}
+.m-m__burger{display:flex;flex-direction:column;gap:3.5px;justify-self:start}
+.m-m__burger span{display:block;width:20px;height:1.7px;background:#121313;border-radius:2px}
 .m-m__hdr img{width:150px;justify-self:center}
-.m-m__act{display:flex;gap:14px;align-items:center;justify-self:end}
+.m-m__act{display:flex;gap:12px;align-items:center;justify-self:end}
 .m-m__cart{
-  background:#121313;color:#fff;border-radius:99px;min-width:19px;height:19px;
-  display:inline-grid;place-items:center;font-size:11px;font-weight:600;padding:0 5px;
+  background:#121313;color:#fff;border-radius:99px;min-width:17px;height:17px;
+  display:inline-grid;place-items:center;font-size:10px;font-weight:600;padding:0 5px;
 }
 .m-m__bar{
   height:32px;background:#000;color:#fff;display:flex;align-items:center;
-  justify-content:center;gap:10px;font-size:11px;
+  justify-content:center;gap:9px;font-size:11px;
 }
-.m-m__bar img{width:12px;height:12px;border-radius:2px}
+.m-m__bar img{width:14px;height:14px;border-radius:2px}
 .m-m__bar b{color:var(--sale-gold);font-weight:700}
 .m-m__bar i{width:1px;height:11px;background:#4a4a4a;display:block}
 .m-m__bar em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:700;margin-left:5px}
-.m-m__hero{
-  height:580px;position:relative;overflow:hidden;isolation:isolate;
-  display:flex;flex-direction:column;justify-content:center;gap:26px;padding:30px 0 18px;
+
+.m-m__hero{height:804px;position:relative;overflow:hidden;isolation:isolate}
+/* the comp's scrim is vertical and bottom-heavy, not a diagonal */
+.m-m__hero .mock__scrim{
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,.14) 37%,
+    rgba(0,0,0,.40) 45%, rgba(0,0,0,.64) 53%, rgba(0,0,0,.78) 68%,
+    rgba(0,0,0,.86) 78%, rgba(0,0,0,.88) 100%);
 }
-.m-m__hero .mock__scrim{background:linear-gradient(100deg,rgba(0,0,0,.42),rgba(0,0,0,.14) 60%)}
-.m-m__copy{position:relative;z-index:3;padding:0 22px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;align-items:flex-start}
-.m-m__h1{font-size:44px;font-weight:600;line-height:.96;letter-spacing:-.035em;color:#fff;margin:0}
-.m-m__btn{display:inline-flex;background:#fff;color:#121313;border-radius:99px;font-size:15px;font-weight:500;padding:14px 26px}
-.m-m__awards{list-style:none;margin:0;padding:0;color:#fff;display:flex;gap:32px}
-.m-m__awards b{display:block;font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
-.m-m__awards span{display:block;font-size:12px}
-.m-m__chips{
-  position:relative;z-index:3;list-style:none;margin:0;padding:0 22px;
-  display:flex;gap:8px;overflow:hidden;
+/* the copy stack is anchored to the bottom of the hero */
+.m-m__copy{
+  position:absolute;inset:0;z-index:3;color:#fff;
+  display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:32px;
 }
-.m-m__chips li{
-  display:inline-flex;align-items:center;gap:6px;background:rgba(18,19,19,.62);color:#fff;
+.m-m__h1{
+  margin:0;text-align:center;color:#fff;
+  font-size:48.5px;line-height:48px;font-weight:600;letter-spacing:-.035em;
+}
+
+/* three award columns, hairline-separated, spanning the full frame width.
+   flex:auto (basis auto, not 0) shares the slack equally, which is what
+   puts the rules at 98px and 254px like the comp. */
+.m-m__awards{
+  list-style:none;margin:23.4px 0 0;padding:0;display:flex;text-align:center;
+}
+.m-m__awards li{flex:auto;min-width:0}
+.m-m__awards li + li{border-left:1px solid rgba(255,255,255,.26)}
+.m-m__awards b{display:block;font-size:20px;line-height:22px;font-weight:600;letter-spacing:-.02em}
+.m-m__awards span{display:block;margin-top:7px;font-size:14.5px;line-height:17.4px;font-weight:400}
+
+.m-m__btn{
+  margin:27.3px 16px 0;height:54.3px;border-radius:99px;background:#fff;color:#121313;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;line-height:1;font-weight:500;
+}
+
+/* 2 × 2 tile grid: two store ratings on top, two stats beneath */
+.m-m__tiles{
+  list-style:none;margin:31.7px 16px 0;padding:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:7.7px 8.3px;
+}
+.m-m__tiles li{
+  height:64.3px;border-radius:16px;background:rgba(0,0,0,.62);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-radius:11px;padding:9px 14px;font-size:12px;white-space:nowrap;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
 }
-.m-m__chips b{font-weight:600}
-.m-m__chips i{color:var(--gold);font-style:normal;letter-spacing:1px}
+.m-m__tiles svg{width:24px;height:24px;fill:#fff}
+.m-m__tiles p{
+  margin:0;display:flex;align-items:center;gap:11px;white-space:nowrap;
+  font-size:13.4px;line-height:18px;font-weight:500;letter-spacing:-.01em;
+}
+.m-m__tiles b{font-size:12.6px;font-weight:600}
+.m-m__tiles i{color:var(--gold);font-style:normal;font-size:15px;letter-spacing:2.4px;margin-right:-2.4px}
 
 /* ─────────────── drag veil ─────────────── */
 .veil{

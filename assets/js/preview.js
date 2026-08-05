@@ -20,6 +20,18 @@
 
   var STARS = '★★★★★';
 
+  /* tile marks, drawn to the proportions they have in the comp */
+  var ICON = {
+    apple:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.9 12.7c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.2-.9c-1.7 0-3.2 1-4.1 2.5-1.7 3-.4 7.5 1.3 9.9.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8 2.2-1.2 3-2.4c.9-1.4 1.3-2.7 1.4-2.8 0 0-2.6-1-2.6-4zM14.6 5.1c.7-.8 1.1-2 1-3.1-1 0-2.2.6-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>',
+    android:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M8.3 1.2a.5.5 0 0 0-.8.5l1 1.9a6.4 6.4 0 0 0-2.9 5.2h12.8a6.4 6.4 0 0 0-2.9-5.2l1-1.9a.5.5 0 0 0-.8-.5l-1.1 2a6.6 6.6 0 0 0-5 0l-1.3-2zm.9 4.4a.8.8 0 1 1 0 1.7.8.8 0 0 1 0-1.7zm5.6 0a.8.8 0 1 1 0 1.7.8.8 0 0 1 0-1.7z"/><rect x="1.5" y="9.6" width="2.9" height="7.8" rx="1.45"/><rect x="19.6" y="9.6" width="2.9" height="7.8" rx="1.45"/><path d="M5.6 9.6h12.8v8.4a1.3 1.3 0 0 1-1.3 1.3H6.9a1.3 1.3 0 0 1-1.3-1.3V9.6z"/><rect x="7.9" y="18.2" width="2.9" height="5.6" rx="1.45"/><rect x="13.2" y="18.2" width="2.9" height="5.6" rx="1.45"/></svg>',
+    badge:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.1 14.2 1.2 21.3a.55.55 0 0 0 .3.93l3.4.5.9 3.0.06-.06 5.5-6.2a7.7 7.7 0 0 1-3.26-5.27zm7.8 0a7.7 7.7 0 0 1-3.26 5.27l5.5 6.2.06.06.9-3 3.4-.5a.55.55 0 0 0 .3-.93L15.9 14.2z"/><path fill-rule="evenodd" d="M12 .7a7.7 7.7 0 1 0 0 15.4A7.7 7.7 0 0 0 12 .7zm0 3 1.75 3.55 3.92.57-2.84 2.76.67 3.9L12 12.66l-3.5 1.84.67-3.9L6.33 7.82l3.92-.57L12 3.7z"/></svg>',
+    lesson:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.3 2h8.1l8.1 8.1v9.5A2.4 2.4 0 0 1 19.1 22H5.3a2.4 2.4 0 0 1-2.4-2.4V4.4A2.4 2.4 0 0 1 5.3 2zm5.9 6.2v5.3l-2-2-1.5 1.5 4.3 4.3 4.3-4.3-1.5-1.5-2 2V8.2h-1.6z"/></svg>'
+  };
+
   /* ── the two frame templates, at their native breakpoint sizes ── */
   var MOCK = {
     desktop: {
@@ -58,7 +70,7 @@
         '</div>'
     },
     mobile: {
-      label: 'Mobile', nw: 430, nh: 676,
+      label: 'Mobile', nw: 375, nh: 891,
       html:
         '<div class="mock m-m">' +
           '<div class="m-m__hdr">' +
@@ -76,18 +88,19 @@
             '<div class="mock__scrim"></div>' +
             '<div class="m-m__copy">' +
               '<h1 class="m-m__h1">Train smart.<br>Improve fast.</h1>' +
-              '<span class="m-m__btn">Explore Golf at Home</span>' +
               '<ul class="m-m__awards">' +
                 '<li><b>#1</b><span>Bestseller</span></li>' +
                 '<li><b>Golf SIM 2026</b><span>TOP Consumer</span></li>' +
                 '<li><b>AI Startup</b><span>Winning</span></li>' +
               '</ul>' +
+              '<span class="m-m__btn">Explore Golf at Home</span>' +
+              '<ul class="m-m__tiles">' +
+                '<li>' + ICON.apple   + '<p><b>4.8</b><i>' + STARS + '</i></p></li>' +
+                '<li>' + ICON.android + '<p><b>4.6</b><i>' + STARS + '</i></p></li>' +
+                '<li>' + ICON.badge   + '<p>600+ Unique Courses</p></li>' +
+                '<li>' + ICON.lesson  + '<p>70,000+ Lessons Taught</p></li>' +
+              '</ul>' +
             '</div>' +
-            '<ul class="m-m__chips">' +
-              '<li><b>4.8</b><i>' + STARS + '</i></li>' +
-              '<li><b>4.6</b><i>' + STARS + '</i></li>' +
-              '<li><b>600+</b> Courses</li>' +
-            '</ul>' +
           '</div>' +
         '</div>'
     }

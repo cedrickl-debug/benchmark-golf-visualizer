@@ -7,8 +7,12 @@ A drag-and-drop tool for reviewing hero-asset variations, built from the `Home.p
 ## What it does
 
 The page opens with two **sets** — a **desktop** frame (1920×985) beside a **mobile** frame
-(430×676), twice over — each rendered at its real breakpoint size and then scaled down, so
+(375×891), twice over — each rendered at its real breakpoint size and then scaled down, so
 proportions match the comp exactly rather than being approximated. **Set** adds another pair.
+
+The mobile frame is measured straight off `Product Page _ Golf At Home - Mobile.png` (1125px
+wide, i.e. 375pt @3×) and divided by three, so the copy stack — centred headline, the three
+rule-separated awards, the full-width pill, the 2 × 2 tile grid — lands where the comp puts it.
 
 Drop a video **on a frame** to load just that one. Drop several **anywhere** and they fill
 every frame in order, spawning extra desktop frames if you have more clips than frames.
