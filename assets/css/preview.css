@@ -79,15 +79,18 @@ body[data-playing] .ctl--play .i-pause{display:block}
 .scrub::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:#fff}
 
 /* ─────────────── board of frames ─────────────── */
-/* one column per orientation — new frames stack under their own kind */
+/* one track per orientation: horizontals stack top to bottom, verticals
+   run left to right — a wide frame wants the width, a tall one doesn't */
 .board{
   flex:1;display:flex;align-items:flex-start;gap:22px;
   padding:24px 22px;overflow:auto;
 }
-.col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.col{display:flex;gap:22px}
 .col:empty{display:none}
-.col--desktop{flex:1;max-width:940px}
-.col--mobile{flex:none;width:min(320px,22vw)}
+/* the desktop track gives up width to the vertical row, but only down to a
+   floor — past that the board scrolls sideways rather than squashing further */
+.col--desktop{flex:1 1 auto;flex-direction:column;min-width:520px;max-width:940px}
+.col--mobile{flex:none;flex-direction:row;flex-wrap:wrap;align-items:flex-start}
 .hint{
   margin:0;padding:10px 20px 16px;font-size:12px;color:#71777a;line-height:1.6;
   border-top:1px solid var(--app-line);background:var(--app-panel);
@@ -100,7 +103,8 @@ body[data-playing] .ctl--play .i-pause{display:block}
   transition:border-color .18s ease,box-shadow .18s ease;
 }
 .viewer.is-target{border-color:#0097c9;box-shadow:0 0 0 3px rgba(0,151,201,.22)}
-.viewer{width:100%}
+.viewer--desktop{width:100%}
+.viewer--mobile{width:300px}
 
 .viewer__bar{
   display:flex;align-items:center;gap:9px;padding:8px 11px;
@@ -290,7 +294,7 @@ body[data-drag] .veil.is-hushed{display:none}
 
 @media (max-width:1100px){
   .board{flex-direction:column;align-items:stretch}
-  .col--desktop{max-width:none;width:100%}
-  .col--mobile{width:min(320px,60vw)}
+  .col--desktop{max-width:none;min-width:0;width:100%}
+  .col--mobile{width:100%}
   .top__mid{order:3;min-width:100%}
 }

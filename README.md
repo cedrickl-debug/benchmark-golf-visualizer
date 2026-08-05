@@ -16,8 +16,9 @@ rule-separated awards, the full-width pill, the 2 × 2 tile grid — lands where
 
 Drop a video **on a frame** to load just that one. Drop several **anywhere** and they fill
 every frame in order, spawning extra desktop frames if you have more clips than frames.
-Add frames with the **Desktop** / **Mobile** buttons — each orientation owns a column, so a
-new horizontal frame stacks under the horizontals and a new vertical under the verticals.
+Add frames with the **Desktop** / **Mobile** buttons — each orientation owns its own track.
+A new horizontal frame stacks **under** the horizontals; a new vertical lands to the **right**
+of the verticals, so you can line several phone variations up beside each other.
 
 Every clip runs off one master clock, so **variations dropped at different moments still sit
 on the same frame** — load variation 1, watch it, drop 2 and 3 a minute later, and all three

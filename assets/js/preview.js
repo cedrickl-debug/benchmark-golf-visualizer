@@ -182,7 +182,7 @@
       v.name.classList.remove('is-empty');
     });
 
-    // each orientation owns a column, so a new frame lands under its own kind
+    // each orientation owns a track — horizontals stack down, verticals run across
     board.querySelector('[data-col="' + kind + '"]').appendChild(el);
     views.push(v);
     rescale(v);
